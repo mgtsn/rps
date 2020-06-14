@@ -1,0 +1,75 @@
+<html>
+
+<head>
+    <title>Page Title</title>
+    <meta charset="UTF-8" />
+</head>
+
+<body>
+    <script>
+        
+        let choices = ['Rock', 'Paper', 'Scissors'];
+
+
+        //Gets the player's choice
+        function playerInput() {
+            p = window.prompt('Choose Rock, Paper, or Scissors: ')
+            p = cap(p);
+
+            while (!choices.includes(p)) {
+                p = window.prompt('Choose Rock, Paper, or Scissors: ')
+                p = cap(p);
+            }
+
+            return(p);
+        }
+
+        //Generates random choice for computer
+        function comInput() {
+            r = Math.floor(3 * Math.random());
+            return (choices[r]);
+        }
+
+        //Fixes capitalization
+        function cap(word) {
+            word = word.toLowerCase();
+            word = word.replace(word[0], word[0].toUpperCase());
+            return (word);
+        }
+
+        //Takes choices and determines winner
+        function round(player, cpu) {
+
+            player = cap(player);
+
+            wl = choices.indexOf(player) - choices.indexOf(cpu);
+
+            if (wl == 1 || wl == -2) {
+                return ('You Win! ' + player + ' beats ' + cpu + '.');
+            }
+            else if (wl == 0) {
+                return ('Tie! Both players chose ' + player);
+            }
+            else {
+                return ('You lose! ' + cpu + ' beats ' + player + '.');
+            }
+        }
+
+        //Plays the requested number of rounds and prints results
+        function game(rounds) {
+            for (i = 1; i <= rounds; i++) {
+                    console.log('Round ' + i);
+                    console.log(round(playerInput(), comInput()));
+            }
+        }
+
+
+
+        game(5);
+
+
+
+    </script>
+</body>
+
+</html>
